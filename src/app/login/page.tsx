@@ -34,8 +34,8 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-gray-900 px-4">
       <div className="w-full max-w-md rounded-2xl bg-gray-800 p-8 shadow-xl border border-gray-700">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-white">Control de Camisetas</h1>
-          <p className="text-sm text-gray-400 mt-2">Acceso exclusivo para operadores de iglesia</p>
+          <h1 className="text-2xl font-bold text-white">Control de Camisetas LGC</h1>
+          <p className="text-sm text-gray-400 mt-2">Made by bili © derechos reservados 2026<br/>Si no conoces tu inicio de sesión, contacta a un administrador</p>
         </div>
 
         {errorMsg && (
@@ -54,7 +54,7 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="operador@iglesia.com"
+              placeholder="tuIglesia@gmail.com"
               className="w-full rounded-lg bg-gray-700 border border-gray-600 px-4 py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition"
             />
           </div>
