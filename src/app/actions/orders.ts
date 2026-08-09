@@ -223,3 +223,13 @@ export async function removeItemFromExistingOrder(itemId: string, orderId: strin
   await recalculateOrderTotal(orderId);
   return { success: true };
 }
+
+export async function toggleOrderDelivered(orderId: string, currentStatus: boolean) {
+  const { error } = await supabase
+    .from('orders')
+    .update({ is_delivered: !currentStatus })
+    .eq('id', orderId);
+
+  if (error) return { success: false, error: error.message };
+  return { success: true };
+}
