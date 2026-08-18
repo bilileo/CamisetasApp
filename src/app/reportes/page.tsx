@@ -298,42 +298,73 @@ export default function ReportesPage() {
                 </div>
               </div>
 
-              {/* TABLERO DE PRODUCCIÓN POR TALLA */}
+             {/* TABLERO DE PRODUCCIÓN POR TALLA */}
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-white print:text-black border-b border-gray-700 print:border-gray-300 pb-2">Desglose Técnico para Producción (Proveedor)</h3>
+                <h3 className="text-lg font-bold text-white print:text-black border-b border-gray-700 print:border-gray-300 pb-2">
+                  Desglose Técnico para Producción (Proveedor)
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 print:grid-cols-2">
+                  
+                  {/* TABLA DE NIÑOS (Ocultando ceros) */}
                   <div>
-                    <h4 className="text-sm font-bold bg-blue-900/50 print:bg-blue-100 text-blue-300 print:text-blue-900 px-4 py-2 rounded-t-lg border border-gray-700 print:border-gray-300">Niños</h4>
+                    <h4 className="text-sm font-bold bg-blue-900/50 print:bg-blue-100 text-blue-300 print:text-blue-900 px-4 py-2 rounded-t-lg border border-gray-700 print:border-gray-300">
+                      Niños
+                    </h4>
                     <table className="w-full text-sm border-collapse">
                       <tbody>
-                        {KIDS_SIZES.map(size => {
-                          const row = reportData.sizeBreakdown[size];
-                          return (
-                            <tr key={size} className="border-b border-gray-700/50 print:border-gray-200">
-                              <td className="py-2.5 px-4 font-medium text-gray-300 print:text-black">Talla {size}</td>
-                              <td className="py-2.5 px-4 text-right font-bold text-white print:text-black">{row.quantity} <span className="text-xs font-normal text-gray-400 print:text-gray-600">pzs</span></td>
-                            </tr>
-                          );
-                        })}
+                        {KIDS_SIZES.filter(size => reportData.sizeBreakdown[size].quantity > 0).length > 0 ? (
+                          KIDS_SIZES.filter(size => reportData.sizeBreakdown[size].quantity > 0).map(size => {
+                            const row = reportData.sizeBreakdown[size];
+                            return (
+                              <tr key={size} className="border-b border-gray-700/50 print:border-gray-200">
+                                <td className="py-2.5 px-4 font-medium text-gray-300 print:text-black">Talla {size}</td>
+                                <td className="py-2.5 px-4 text-right font-bold text-white print:text-black">
+                                  {row.quantity} <span className="text-xs font-normal text-gray-400 print:text-gray-600">pzs</span>
+                                </td>
+                              </tr>
+                            );
+                          })
+                        ) : (
+                          <tr>
+                            <td colSpan={2} className="py-4 px-4 text-center text-gray-500 print:text-gray-400 text-xs italic">
+                              Ninguna talla solicitada en esta categoría.
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
+
+                  {/* TABLA DE ADULTOS (Ocultando ceros) */}
                   <div>
-                    <h4 className="text-sm font-bold bg-purple-900/50 print:bg-purple-100 text-purple-300 print:text-purple-900 px-4 py-2 rounded-t-lg border border-gray-700 print:border-gray-300">Adultos</h4>
+                    <h4 className="text-sm font-bold bg-purple-900/50 print:bg-purple-100 text-purple-300 print:text-purple-900 px-4 py-2 rounded-t-lg border border-gray-700 print:border-gray-300">
+                      Adultos
+                    </h4>
                     <table className="w-full text-sm border-collapse">
                       <tbody>
-                        {ADULT_SIZES.map(size => {
-                          const row = reportData.sizeBreakdown[size];
-                          return (
-                            <tr key={size} className="border-b border-gray-700/50 print:border-gray-200">
-                              <td className="py-2.5 px-4 font-medium text-gray-300 print:text-black">Talla {size}</td>
-                              <td className="py-2.5 px-4 text-right font-bold text-white print:text-black">{row.quantity} <span className="text-xs font-normal text-gray-400 print:text-gray-600">pzs</span></td>
-                            </tr>
-                          );
-                        })}
+                        {ADULT_SIZES.filter(size => reportData.sizeBreakdown[size].quantity > 0).length > 0 ? (
+                          ADULT_SIZES.filter(size => reportData.sizeBreakdown[size].quantity > 0).map(size => {
+                            const row = reportData.sizeBreakdown[size];
+                            return (
+                              <tr key={size} className="border-b border-gray-700/50 print:border-gray-200">
+                                <td className="py-2.5 px-4 font-medium text-gray-300 print:text-black">Talla {size}</td>
+                                <td className="py-2.5 px-4 text-right font-bold text-white print:text-black">
+                                  {row.quantity} <span className="text-xs font-normal text-gray-400 print:text-gray-600">pzs</span>
+                                </td>
+                              </tr>
+                            );
+                          })
+                        ) : (
+                          <tr>
+                            <td colSpan={2} className="py-4 px-4 text-center text-gray-500 print:text-gray-400 text-xs italic">
+                              Ninguna talla solicitada en esta categoría.
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
+
                 </div>
               </div>
             </div>
